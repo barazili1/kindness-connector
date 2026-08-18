@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Platform } from '../types';
 import { Check, ChevronRight, Zap, Lock, Shield, Globe, Cpu, Radio, Target, Terminal, Wifi } from 'lucide-react';
 import { audioManager } from '../utils/audioManager';
+import WinnersDashboard from './WinnersDashboard';
 
 interface PlatformSelectionProps {
   onSelect: (platform: Platform) => void;
@@ -274,6 +275,8 @@ const PlatformSelection: React.FC<PlatformSelectionProps> = ({ onSelect, t }) =>
               <span className="text-[7px] uppercase tracking-widest">ارتباط آمن</span>
             </div>
           </div>
+
+          <WinnersDashboard />
         </div>
       </footer>
 

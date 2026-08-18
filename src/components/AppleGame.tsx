@@ -22,6 +22,7 @@ import {
     Check
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import WinnersDashboard from './WinnersDashboard';
 
 const MotionDiv = motion.div as any;
 
@@ -346,6 +347,11 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                         <Send className="w-5 h-5" />
                         <span>{language === 'ar' ? 'الانضمام لقناة تيليجرام' : 'Join Telegram Channel'}</span>
                     </motion.a>
+                </div>
+
+                {/* Live Winners Dashboard */}
+                <div className="pb-6">
+                    <WinnersDashboard />
                 </div>
 
             </div>

@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Apple, Plane, ArrowLeft, Gamepad2, ShieldCheck, UserCheck } from 'lucide-react';
+import { ArrowLeft, Gamepad2, ShieldCheck, UserCheck } from 'lucide-react';
 import { SelectedGame, Platform } from '../types';
+import appleLogo from '../assets/game-apple.png';
+import crashLogo from '../assets/game-crash.png';
 
 const MotionDiv = motion.div as any;
 
@@ -90,8 +92,8 @@ export const GameSelection: React.FC<GameSelectionProps> = ({
 
             <div className="relative z-10 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-950/40 border border-green-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] group-hover:scale-110 transition-transform">
-                  <Apple className="w-8 h-8 text-green-400 fill-green-500/30" />
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-950/40 border border-green-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] group-hover:scale-110 transition-transform overflow-hidden">
+                  <img src={appleLogo} alt="Apple of Fortune" loading="lazy" width={512} height={512} className="w-10 h-10 object-contain drop-shadow-[0_0_8px_var(--primary-glow)]" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
@@ -122,8 +124,8 @@ export const GameSelection: React.FC<GameSelectionProps> = ({
 
             <div className="relative z-10 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-950/40 border border-green-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] group-hover:scale-110 transition-transform">
-                  <Plane className="w-8 h-8 text-green-400 -rotate-45" />
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-950/40 border border-green-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.2)] group-hover:scale-110 transition-transform overflow-hidden">
+                  <img src={crashLogo} alt="Crash" loading="lazy" width={512} height={512} className="w-10 h-10 object-contain drop-shadow-[0_0_8px_var(--primary-glow)]" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">

@@ -23,6 +23,8 @@ export const CrashGame: React.FC<CrashGameProps> = ({
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [onlineCount, setOnlineCount] = useState<number>(1428);
   const [history, setHistory] = useState<string[]>(['2.14x', '1.85x', '3.40x', '1.25x', '2.05x']);
+  const [flying, setFlying] = useState<boolean>(false);
+  const [flightKey, setFlightKey] = useState<number>(0);
 
   const platformName = platform === 'linebet_v1' ? 'Greenbet' : 'Winwin';
 
@@ -37,6 +39,8 @@ export const CrashGame: React.FC<CrashGameProps> = ({
   const handleStart = async () => {
     if (isAnalyzing) return;
     setIsAnalyzing(true);
+    setFlying(true);
+    setFlightKey(k => k + 1);
 
     let targetValue = '';
 
@@ -83,6 +87,7 @@ export const CrashGame: React.FC<CrashGameProps> = ({
     }
 
     setIsAnalyzing(false);
+    setFlying(false);
 
     // Add new prediction to previous predictions list
     setHistory(prev => [targetValue, ...prev.slice(0, 9)]);
@@ -90,6 +95,7 @@ export const CrashGame: React.FC<CrashGameProps> = ({
 
   const handleRestart = () => {
     setIsAnalyzing(false);
+    setFlying(false);
     setCurrentValue('0.00x');
   };
 
@@ -193,6 +199,53 @@ export const CrashGame: React.FC<CrashGameProps> = ({
             <div className="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
               <Plane className="w-48 h-48 text-green-500 -rotate-45" />
             </div>
+
+            {/* Flying dot with elegant curved trail */}
+            {flying && (
+              <svg
+                key={flightKey}
+                className="absolute inset-0 w-full h-full pointer-events-none z-20"
+                viewBox="0 0 400 220"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  <linearGradient id="crashTrail" x1="0" y1="1" x2="1" y2="0">
+                    <stop offset="0%" stopColor="var(--primary-color)" stopOpacity="0" />
+                    <stop offset="60%" stopColor="var(--primary-color)" stopOpacity="0.7" />
+                    <stop offset="100%" stopColor="var(--primary-color)" stopOpacity="1" />
+                  </linearGradient>
+                  <filter id="crashGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="var(--primary-color)" floodOpacity="0.8" />
+                  </filter>
+                </defs>
+
+                <path
+                  id="crashPath"
+                  d="M 12 212 C 90 208, 150 180, 210 120 S 330 30, 390 10"
+                  fill="none"
+                  stroke="url(#crashTrail)"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  filter="url(#crashGlow)"
+                  pathLength={1}
+                  strokeDasharray="1"
+                  strokeDashoffset="1"
+                >
+                  <animate attributeName="stroke-dashoffset" from="1" to="0" dur="1.6s" repeatCount="indefinite" />
+                </path>
+
+                <circle r="10" fill="var(--primary-color)" filter="url(#crashGlow)">
+                  <animateMotion dur="1.6s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1">
+                    <mpath href="#crashPath" />
+                  </animateMotion>
+                </circle>
+                <circle r="18" fill="var(--primary-color)" opacity="0.25">
+                  <animateMotion dur="1.6s" repeatCount="indefinite">
+                    <mpath href="#crashPath" />
+                  </animateMotion>
+                </circle>
+              </svg>
+            )}
 
             {/* Top Badge inside box */}
             <div className="flex items-center gap-1.5 px-3 py-1 bg-green-500/10 border border-green-500/30 rounded-full mb-4">

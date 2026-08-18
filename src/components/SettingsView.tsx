@@ -36,6 +36,55 @@ interface SettingsViewProps {
   platform: Platform;
 }
 
+const SectionCard: React.FC<{
+  number: string;
+  label: string;
+  title: string;
+  icon: React.ElementType;
+  accent?: string;
+  image?: string;
+  children: React.ReactNode;
+}> = ({ number, label, title, icon: Icon, accent = 'var(--primary-color)', image, children }) => (
+  <div className="relative bg-black/35 backdrop-blur-xl border border-white/12 rounded-3xl p-4 sm:p-6 shadow-[0_14px_40px_rgba(0,0,0,0.45)] overflow-hidden">
+    <div
+      className="absolute top-0 right-0 left-0 h-[2px]"
+      style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+    />
+    <div
+      className="absolute -top-10 left-0 w-32 h-32 blur-3xl rounded-full pointer-events-none opacity-40"
+      style={{ backgroundColor: `${accent}33` }}
+    />
+    <div className="relative flex items-center gap-3 mb-4">
+      <div
+        className="w-16 h-16 rounded-2xl border flex items-center justify-center shrink-0 overflow-hidden"
+        style={{ borderColor: `${accent}55`, backgroundColor: `${accent}14` }}
+      >
+        {image ? (
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            width={512}
+            height={512}
+            className="w-12 h-12 object-contain"
+            style={{ filter: `drop-shadow(0 0 8px ${accent}88)` }}
+          />
+        ) : (
+          <Icon className="w-6 h-6" style={{ color: accent }} />
+        )}
+      </div>
+      <div className="min-w-0 flex-1">
+        <span className="text-[10px] font-black uppercase tracking-widest block mb-0.5" style={{ color: accent }}>
+          {label} ({number})
+        </span>
+        <h2 className="text-base sm:text-lg font-black text-white leading-tight">{title}</h2>
+      </div>
+      <span className="text-3xl font-black font-mono text-white/10">{number}</span>
+    </div>
+    {children}
+  </div>
+);
+
 const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t, platform }) => {
   const [copied, setCopied] = useState(false);
   const [userId, setUserId] = useState('');
@@ -91,55 +140,6 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
     setIsModalOpen(false);
     onComplete(userId.trim());
   };
-
-  const SectionCard: React.FC<{
-    number: string;
-    label: string;
-    title: string;
-    icon: React.ElementType;
-    accent?: string;
-    image?: string;
-    children: React.ReactNode;
-  }> = ({ number, label, title, icon: Icon, accent = 'var(--primary-color)', image, children }) => (
-    <div className="relative bg-black/35 backdrop-blur-xl border border-white/12 rounded-3xl p-4 sm:p-6 shadow-[0_14px_40px_rgba(0,0,0,0.45)] overflow-hidden">
-      <div
-        className="absolute top-0 right-0 left-0 h-[2px]"
-        style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
-      />
-      <div
-        className="absolute -top-10 left-0 w-32 h-32 blur-3xl rounded-full pointer-events-none opacity-40"
-        style={{ backgroundColor: `${accent}33` }}
-      />
-      <div className="relative flex items-center gap-3 mb-4">
-        <div
-          className="w-16 h-16 rounded-2xl border flex items-center justify-center shrink-0 overflow-hidden"
-          style={{ borderColor: `${accent}55`, backgroundColor: `${accent}14` }}
-        >
-          {image ? (
-            <img
-              src={image}
-              alt={title}
-              loading="lazy"
-              width={512}
-              height={512}
-              className="w-12 h-12 object-contain"
-              style={{ filter: `drop-shadow(0 0 8px ${accent}88)` }}
-            />
-          ) : (
-            <Icon className="w-6 h-6" style={{ color: accent }} />
-          )}
-        </div>
-        <div className="min-w-0 flex-1">
-          <span className="text-[10px] font-black uppercase tracking-widest block mb-0.5" style={{ color: accent }}>
-            {label} ({number})
-          </span>
-          <h2 className="text-base sm:text-lg font-black text-white leading-tight">{title}</h2>
-        </div>
-        <span className="text-3xl font-black font-mono text-white/10">{number}</span>
-      </div>
-      {children}
-    </div>
-  );
 
   return (
     <div className="flex flex-col min-h-full bg-transparent font-sans text-white selection:bg-green-500/30" dir="rtl">

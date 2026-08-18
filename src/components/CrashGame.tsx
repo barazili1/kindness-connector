@@ -231,16 +231,24 @@ export const CrashGame: React.FC<CrashGameProps> = ({
                   strokeDasharray="1"
                   strokeDashoffset="1"
                 >
-                  <animate attributeName="stroke-dashoffset" from="1" to="0" dur="1.6s" repeatCount="indefinite" />
+                  <animate
+                    attributeName="stroke-dashoffset"
+                    from="1"
+                    to="0"
+                    dur="0.84s"
+                    calcMode="linear"
+                    repeatCount="1"
+                    fill="freeze"
+                  />
                 </path>
 
                 <circle r="10" fill="var(--primary-color)" filter="url(#crashGlow)">
-                  <animateMotion dur="1.6s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1">
+                  <animateMotion dur="0.84s" repeatCount="1" fill="freeze" rotate="auto" calcMode="linear">
                     <mpath href="#crashPath" />
                   </animateMotion>
                 </circle>
                 <circle r="18" fill="var(--primary-color)" opacity="0.25">
-                  <animateMotion dur="1.6s" repeatCount="indefinite">
+                  <animateMotion dur="0.84s" repeatCount="1" fill="freeze" calcMode="linear">
                     <mpath href="#crashPath" />
                   </animateMotion>
                 </circle>

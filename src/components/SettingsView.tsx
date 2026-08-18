@@ -24,6 +24,7 @@ import condTelegram from '../assets/cond-telegram.png';
 import condPromo from '../assets/cond-promo.png';
 import condDeposit from '../assets/cond-deposit.png';
 import condVerify from '../assets/cond-verify.png';
+import kingBetLogo from '../assets/king-bet-logo.png';
 
 const MotionDiv = motion.div as any;
 
@@ -166,12 +167,43 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
           </div>
         </div>
 
-        {/* Intro */}
-        <div className="mb-5 p-4 rounded-2xl bg-black/30 border border-white/10 backdrop-blur-sm flex items-center gap-2.5">
-          <Zap className="w-4 h-4 text-green-500 animate-pulse shrink-0" />
-          <p className="text-[11px] sm:text-xs text-zinc-300 leading-relaxed">
-            نفّذ الشروط الخمسة بالترتيب من الأعلى للأسفل، ثم أدخل ID حسابك في نهاية الصفحة لتفعيل التوقعات.
-          </p>
+        {/* Brand Hero */}
+        <div className="relative mb-5 overflow-hidden rounded-[28px] border border-white/12 bg-black/40 backdrop-blur-xl p-5 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+          <div
+            className="absolute -top-16 -right-10 w-52 h-52 rounded-full blur-3xl opacity-30 pointer-events-none"
+            style={{ backgroundColor: 'var(--primary-color)' }}
+          />
+          <div
+            className="absolute top-0 left-0 right-0 h-[2px]"
+            style={{ background: 'linear-gradient(90deg, transparent, var(--primary-color), transparent)' }}
+          />
+          <div className="relative flex items-center gap-4">
+            <div
+              className="w-20 h-20 shrink-0 rounded-3xl border bg-black/50 flex items-center justify-center overflow-hidden"
+              style={{ borderColor: 'rgba(var(--primary-color-rgb),0.45)' }}
+            >
+              <img
+                src={kingBetLogo}
+                alt="KING BET"
+                width={512}
+                height={512}
+                className="w-16 h-16 object-contain"
+                style={{ filter: 'drop-shadow(0 0 12px var(--primary-glow))' }}
+              />
+            </div>
+            <div className="min-w-0">
+              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-white leading-tight">KING BET</h1>
+              <p className="text-[11px] sm:text-xs text-zinc-300 leading-relaxed mt-1">
+                نفّذ الشروط الخمسة بالترتيب من الأعلى للأسفل، ثم أدخل ID حسابك في نهاية الصفحة لتفعيل التوقعات.
+              </p>
+              <div className="mt-2 flex items-center gap-1.5">
+                <Zap className="w-3.5 h-3.5 animate-pulse" style={{ color: 'var(--primary-color)' }} />
+                <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--primary-color)' }}>
+                  تفعيل فوري · 5 خطوات
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* ALL CONDITIONS STACKED */}

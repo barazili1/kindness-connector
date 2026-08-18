@@ -43,7 +43,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
   }, []); 
 
   const isArabic = language === 'ar';
-  const logoUrl = "https://www.image2url.com/r2/default/images/1776207454999-cea10406-23d7-4372-b0ff-3f6d143a9715.jpeg";
+  const logoUrl = "https://cdn.phototourl.com/free/2026-08-18-9fc49a31-ba3c-4482-9308-bcdf8adf13c3.png";
 
   const loadingSteps = isArabic ? [
     "تأمين الاتصال...",
@@ -91,7 +91,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
           />
 
           {/* Logo Container */}
-          <div className="relative w-40 h-40 rounded-[2.5rem] overflow-hidden border border-green-500/40 bg-black/40 backdrop-blur-md shadow-[0_0_30px_rgba(34,197,94,0.3)]">
+          <div className="relative w-56 h-56 rounded-[2.5rem] overflow-hidden border border-green-500/40 bg-black/40 backdrop-blur-md shadow-[0_0_30px_rgba(34,197,94,0.3)]">
             <img 
               src={logoUrl} 
               className="w-full h-full object-cover" 

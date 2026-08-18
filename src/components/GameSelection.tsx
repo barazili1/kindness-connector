@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Apple, Plane, ArrowLeft, Gamepad2, ShieldCheck, UserCheck } from 'lucide-react';
+import { ArrowLeft, Gamepad2, ShieldCheck, UserCheck } from 'lucide-react';
 import { SelectedGame, Platform } from '../types';
 import appleLogo from '../assets/game-apple.png';
 import crashLogo from '../assets/game-crash.png';

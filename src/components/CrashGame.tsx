@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plane, ArrowLeft, Users, User, RotateCcw, Play, History, Sparkles } from 'lucide-react';
 import { Platform } from '../types';
+import WinnersDashboard from './WinnersDashboard';
 
 const MotionDiv = motion.div as any;
 

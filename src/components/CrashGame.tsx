@@ -254,6 +254,11 @@ export const CrashGame: React.FC<CrashGameProps> = ({
             <span>RESTART</span>
           </motion.button>
         </div>
+
+        {/* Live Winners Dashboard */}
+        <div className="mt-6">
+          <WinnersDashboard />
+        </div>
       </div>
     </div>
   );

@@ -184,8 +184,8 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
           </div>
         </div>
 
-        {/* Step Wizard Nav Badges (5 Steps Horizontal Grid) */}
-        <div className="grid grid-cols-5 gap-1.5 sm:gap-2 mb-5">
+        {/* Step Wizard Nav (Stacked Vertically) */}
+        <div className="flex flex-col gap-2 mb-5">
           {stepsList.map((step) => {
             const isActive = activeStep === step.id;
             const isCompleted = activeStep > step.id;
@@ -198,7 +198,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                   audioManager.playClick();
                   setActiveStep(step.id);
                 }}
-                className={`relative flex flex-col items-center p-2 sm:p-2.5 rounded-xl border backdrop-blur-md transition-all duration-300 text-center ${
+                className={`relative w-full flex items-center gap-3 p-3 rounded-xl border backdrop-blur-md transition-all duration-300 text-right ${
                   isActive 
                     ? 'bg-green-500/15 border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.25)] scale-[1.02]' 
                     : isCompleted
@@ -206,25 +206,28 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
                       : 'bg-black/30 border-white/10 text-zinc-400 hover:border-white/30'
                 }`}
               >
-                <div className="flex items-center gap-1 mb-1">
+                <div className="flex items-center gap-1.5 shrink-0">
                   {isCompleted ? (
-                    <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
+                    <CheckCircle2 className="w-4 h-4 text-green-500" />
                   ) : (
-                    <StepIcon className={`w-3.5 h-3.5 ${isActive ? 'text-green-500 animate-pulse' : 'text-zinc-500'}`} />
+                    <StepIcon className={`w-4 h-4 ${isActive ? 'text-green-500 animate-pulse' : 'text-zinc-500'}`} />
                   )}
-                  <span className={`text-xs font-black ${isActive ? 'text-green-400' : 'text-zinc-400'}`}>
+                  <span className={`text-xs font-black font-mono ${isActive ? 'text-green-400' : 'text-zinc-400'}`}>
                     {step.number}
                   </span>
                 </div>
-                <span className={`text-[9px] sm:text-[11px] font-bold line-clamp-1 truncate w-full ${isActive ? 'text-white' : 'text-zinc-400'}`}>
-                  {step.title}
-                </span>
+                <div className="flex flex-col flex-1 min-w-0">
+                  <span className={`text-xs sm:text-sm font-black truncate ${isActive ? 'text-white' : 'text-zinc-300'}`}>
+                    {step.title}
+                  </span>
+                  <span className="text-[10px] text-zinc-500 truncate">{step.subtitle}</span>
+                </div>
                 
                 {/* Active Underline Indicator */}
                 {isActive && (
                   <motion.div 
                     layoutId="activeTabUnderline"
-                    className="absolute bottom-0 left-1 right-1 h-1 bg-green-500 rounded-full"
+                    className="absolute top-2 bottom-2 right-0 w-1 bg-green-500 rounded-full"
                   />
                 )}
               </button>

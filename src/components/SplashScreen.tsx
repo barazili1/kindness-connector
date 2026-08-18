@@ -134,7 +134,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, language = 'en'
             className="space-y-1"
           >
             <h1 className="text-4xl font-black text-white tracking-[0.2em] uppercase">
-              APPLE <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 drop-shadow-[0_0_12px_rgba(34,197,94,0.6)]">HACK</span>
+              KING <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 drop-shadow-[0_0_12px_rgba(34,197,94,0.6)]">BET</span>
             </h1>
             <div className="flex items-center justify-center gap-3">
               <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-green-500/50" />

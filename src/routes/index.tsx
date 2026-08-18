@@ -5,13 +5,13 @@ import App from "../App";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "APPLE HACK | Advanced Analytics" },
+      { title: "KING BET | Advanced Analytics" },
       {
         name: "description",
         content:
           "Advanced analytics terminal for Apple and Crash game predictions with real-time signal grids.",
       },
-      { property: "og:title", content: "APPLE HACK | Advanced Analytics" },
+      { property: "og:title", content: "KING BET | Advanced Analytics" },
       {
         property: "og:description",
         content:

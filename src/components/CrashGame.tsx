@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plane, ArrowLeft, Users, User, RotateCcw, Play, History, Sparkles } from 'lucide-react';
 import { Platform } from '../types';
+import WinnersDashboard from './WinnersDashboard';
 
 const MotionDiv = motion.div as any;
 
@@ -253,6 +254,11 @@ export const CrashGame: React.FC<CrashGameProps> = ({
             <RotateCcw className="w-4 h-4 stroke-[2.5]" />
             <span>RESTART</span>
           </motion.button>
+        </div>
+
+        {/* Live Winners Dashboard */}
+        <div className="mt-6">
+          <WinnersDashboard />
         </div>
       </div>
     </div>

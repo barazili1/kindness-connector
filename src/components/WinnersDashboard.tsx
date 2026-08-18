@@ -33,7 +33,7 @@ const WinnersDashboard: React.FC<{ title?: string }> = ({ title = 'فوز الل
   }, []);
 
   return (
-    <div className="w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-lg" dir="rtl">
+    <div className="w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-lg" dir="ltr">
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/10 bg-white/5">
         <div className="flex items-center gap-2">
           <Trophy className="w-3.5 h-3.5" style={{ color: 'var(--primary-color)' }} />
@@ -46,9 +46,9 @@ const WinnersDashboard: React.FC<{ title?: string }> = ({ title = 'فوز الل
       </div>
 
       <div className="grid grid-cols-3 px-4 py-1.5 text-[9px] font-black uppercase tracking-widest text-zinc-500 border-b border-white/5">
-        <span>User id</span>
+        <span className="text-left">User id</span>
         <span className="text-center">Bet</span>
-        <span className="text-left">Win</span>
+        <span className="text-right">Win</span>
       </div>
 
       <div className="divide-y divide-white/5">
@@ -59,9 +59,9 @@ const WinnersDashboard: React.FC<{ title?: string }> = ({ title = 'فوز الل
               idx === 0 ? 'bg-white/5' : ''
             }`}
           >
-            <span className="text-zinc-300 tracking-tight">{row.userId}</span>
+            <span className="text-left text-zinc-300 tracking-tight">{row.userId}</span>
             <span className="text-center text-zinc-400">{row.bet}</span>
-            <span className="text-left font-black flex items-center gap-1 justify-start" style={{ color: 'var(--primary-color)' }}>
+            <span className="font-black flex items-center gap-1 justify-end" style={{ color: 'var(--primary-color)' }}>
               <TrendingUp className="w-3 h-3" />
               {row.win}
             </span>

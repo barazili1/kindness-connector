@@ -19,6 +19,11 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language, Platform } from '../types';
 import { audioManager } from '../utils/audioManager';
+import condInstall from '../assets/cond-install.png';
+import condTelegram from '../assets/cond-telegram.png';
+import condPromo from '../assets/cond-promo.png';
+import condDeposit from '../assets/cond-deposit.png';
+import condVerify from '../assets/cond-verify.png';
 
 const MotionDiv = motion.div as any;
 
@@ -92,19 +97,36 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
     title: string;
     icon: React.ElementType;
     accent?: string;
+    image?: string;
     children: React.ReactNode;
-  }> = ({ number, label, title, icon: Icon, accent = 'var(--primary-color)', children }) => (
+  }> = ({ number, label, title, icon: Icon, accent = 'var(--primary-color)', image, children }) => (
     <div className="relative bg-black/35 backdrop-blur-xl border border-white/12 rounded-3xl p-4 sm:p-6 shadow-[0_14px_40px_rgba(0,0,0,0.45)] overflow-hidden">
       <div
         className="absolute top-0 right-0 left-0 h-[2px]"
         style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
       />
-      <div className="flex items-center gap-3 mb-4">
+      <div
+        className="absolute -top-10 left-0 w-32 h-32 blur-3xl rounded-full pointer-events-none opacity-40"
+        style={{ backgroundColor: `${accent}33` }}
+      />
+      <div className="relative flex items-center gap-3 mb-4">
         <div
-          className="w-11 h-11 rounded-2xl border flex items-center justify-center shrink-0"
-          style={{ borderColor: `${accent}55`, backgroundColor: `${accent}1a` }}
+          className="w-16 h-16 rounded-2xl border flex items-center justify-center shrink-0 overflow-hidden"
+          style={{ borderColor: `${accent}55`, backgroundColor: `${accent}14` }}
         >
-          <Icon className="w-5 h-5" style={{ color: accent }} />
+          {image ? (
+            <img
+              src={image}
+              alt={title}
+              loading="lazy"
+              width={512}
+              height={512}
+              className="w-12 h-12 object-contain"
+              style={{ filter: `drop-shadow(0 0 8px ${accent}88)` }}
+            />
+          ) : (
+            <Icon className="w-6 h-6" style={{ color: accent }} />
+          )}
         </div>
         <div className="min-w-0 flex-1">
           <span className="text-[10px] font-black uppercase tracking-widest block mb-0.5" style={{ color: accent }}>
@@ -112,7 +134,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
           </span>
           <h2 className="text-base sm:text-lg font-black text-white leading-tight">{title}</h2>
         </div>
-        <span className="text-2xl font-black font-mono text-white/10">{number}</span>
+        <span className="text-3xl font-black font-mono text-white/10">{number}</span>
       </div>
       {children}
     </div>
@@ -155,7 +177,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
         {/* ALL CONDITIONS STACKED */}
         <div className="flex flex-col gap-4">
           {/* 01 */}
-          <SectionCard number="01" label="الشرط الأول" title={t.install_app || "تثبيت التطبيق الرسمي"} icon={Download}>
+          <SectionCard number="01" label="الشرط الأول" title={t.install_app || "تثبيت التطبيق الرسمي"} icon={Download} image={condInstall}>
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3 bg-black/30 border border-white/10 p-3 rounded-2xl">
                 <div className="w-10 h-10 rounded-xl bg-black border border-white/15 p-1.5 flex items-center justify-center shrink-0">
@@ -179,7 +201,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
           </SectionCard>
 
           {/* 02 */}
-          <SectionCard number="02" label="الشرط الثاني" title="الاشتراك في قناة التلجرام" icon={Send} accent="#0088cc">
+          <SectionCard number="02" label="الشرط الثاني" title="الاشتراك في قناة التلجرام" icon={Send} accent="#0088cc" image={condTelegram}>
             <div className="flex flex-col gap-4">
               <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed bg-black/30 border border-white/10 p-4 rounded-2xl">
                 انضم إلى القناة الرسمية على التلجرام لمتابعة التحديثات الحصرية واستلام الإشارات الفورية.
@@ -198,7 +220,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
           </SectionCard>
 
           {/* 03 */}
-          <SectionCard number="03" label="الشرط الثالث" title={t.registration || "التسجيل بالبروموكود"} icon={Lock}>
+          <SectionCard number="03" label="الشرط الثالث" title={t.registration || "التسجيل بالبروموكود"} icon={Lock} image={condPromo}>
             <div className="flex flex-col gap-4">
               <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed bg-black/30 border border-white/10 p-4 rounded-2xl">
                 عند إنشاء حسابك الجديد على المنصة، أدخل الرمز الترويجي التالي لتفعيل خصم السيرفر وضمان مزامنة التوقعات:
@@ -224,7 +246,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
           </SectionCard>
 
           {/* 04 */}
-          <SectionCard number="04" label="الشرط الرابع" title={t.activation_deposit || "إيداع التفعيل الأول"} icon={CreditCard}>
+          <SectionCard number="04" label="الشرط الرابع" title={t.activation_deposit || "إيداع التفعيل الأول"} icon={CreditCard} image={condDeposit}>
             <div className="flex flex-col gap-4">
               <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed bg-black/30 border border-white/10 p-4 rounded-2xl">
                 يتطلب تفعيل الخوارزمية إجراء أول عملية إيداع بالحساب للحد الأدنى المطلوب:
@@ -247,7 +269,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onComplete, onBack, lang, t
           </SectionCard>
 
           {/* 05 */}
-          <SectionCard number="05" label="الشرط الخامس والأخير" title={t.verify_account || "تأكيد ومعرفة ID الحساب"} icon={Fingerprint}>
+          <SectionCard number="05" label="الشرط الخامس والأخير" title={t.verify_account || "تأكيد ومعرفة ID الحساب"} icon={Fingerprint} image={condVerify}>
             <div className="flex flex-col gap-4">
               <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed bg-black/30 border border-white/10 p-4 rounded-2xl">
                 أدخل رقم معرف حسابك (ID) المكون من 10 إلى 15 رقم للتحقق من المزامنة وبدء التوقعات فوراً:
